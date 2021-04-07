@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  
+  div(class="container-fluid")
+        div(class="row")
+            -
+                let pens = [
+                    {
+                        "type": "Pinpoint",
+                        "color": "blue",
+                        "price": "20"                        
+                    },
+                    {
+                        "type": "Reynolds",
+                        "color": "green",
+                        "price": "100"
+                    },
+                    {
+                        "type": "Rollerball Pen",
+                        "color": "black",
+                        "price": "250"
+                    },                   
+                ]
+            each pen, index in pens 
+                div(class="col-sm-2" onclick=`buy(${index})`) #{pen.type} #{pen.color} #{pen.price}
+            script.
+                function buy(itemNo){
+                    alert(`You purchased Item ${itemNo+1}`)
+                } 
+  
