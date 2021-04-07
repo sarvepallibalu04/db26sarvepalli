@@ -18,9 +18,9 @@ var Pen = require("./models/pen");
 async function recreateDB(){
   // Delete everything
   await Pen.deleteMany();
-  let instance1 = new Pen({pentype:"Pinpoint", color:'blue',cost:20});
-  let instance2 = new Pen({pentype:"Reynolds", color:'green',cost:100});
-  let instance3 = new Pen({pentype:"Rollerball Pen", color:'black',cost:250});
+  let instance1 = new Pen({pentype:"Pinpoint", color:'blue',price:20});
+  let instance2 = new Pen({pentype:"Reynolds", color:'green',price:100});
+  let instance3 = new Pen({pentype:"Rollerball Pen", color:'black',price:250});
   instance1.save( function(err,doc) {
   if(err) return console.error(err);
   console.log("First object saved")
