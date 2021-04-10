@@ -30,9 +30,19 @@ exports.pen_create_post = async function(req, res) {
     }
     };
 // Handle Pen delete form on DELETE.
-exports.pen_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: Pen delete DELETE ' + req.params.id);
+exports.pen_delete = async function(req, res) {
+    console.log("delete "  + req.params.id)
+    try {
+        result = await Pen.findByIdAndDelete( req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
+
+
 // Handle Pen update form on PUT.
 exports.pen_update_put = async function(req, res) {
     console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
