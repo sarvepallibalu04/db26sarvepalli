@@ -1,11 +1,11 @@
 var Pen = require('../models/pen');
 // List of all Pens
 exports.pen_list = async function(req, res) {
-    try{
+    try {
         thePens = await Pen.find();
         res.send(thePens);
         }
-        catch(err){
+        catch(err) {
         res.error(500,`{"error": ${err}}`);
         }
 };
@@ -83,3 +83,20 @@ exports.pen_detail = async function(req, res) {
         res.send(`{"error": document for id ${req.params.id} not found`);
     }
 };
+
+// Handle a show one view with id specified by query
+exports.Pen_view_one_Page = async function(req, res) {
+    console.log("single view for id "  + req.query.id)
+    try{
+        result = await Pen.findById( req.query.id)
+        res.render('Pendetail', {
+            title: 'Pen Detail', 
+            toShow: result
+        });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
