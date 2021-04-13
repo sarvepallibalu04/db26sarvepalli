@@ -1,42 +1,53 @@
 extends layout
 
 block content
-    h1= title
+  h1= title
 
+  if (toShow == null)
+    h2 No instance to delete
+  else
     - let Penid = toShow._id
-    - let pentype = toShow.pentype 
+    - let pentype = toShow.pentype
     - let pencolor = toShow.color
     - let penprice = toShow.price
+    - let actionid = "/resource/pens/" + Penid
+    script let actionid = "#{actionid}"
     div
-        div.row
-            div(class='PenAttr mr-3') pen ID is:
-            div(id="Penid") #{Penid}
-        div.row
-            div(class='PenAttr mr-3') pen type is:
-            div #{pentype}
-        div.row
-            div(class='PenAttr mr-3') pen color is:
-            div #{pencolor}
-        div.row
-            div(class='PenAttr mr-3') pen price is:
-            div #{penprice}
-        div.row
-            button(class='btn btn-success'  type="submit" onclick=`deletepen()`) Delete
+      div.row
+        div(class='PenAttr mr-3') pen ID is:
+        div #{Penid}
+      div.row
+        div(class='PenAttr mr-3') pen Type is:
+        div #{pentype}
+      div.row
+        div(class='PenAttr mr-3') price color is:
+        div #{pencolor}
+      div.row
+        div(class='PenAttr mr-3') pen price is:
+        div #{penprice}
 
-    script.
-        function deletepen() {
-            var value=document.getElementById("Penid").innerHTML;
-            console.log(value)
-            // TODO do something here to show user that form is being submitted
-            fetch('/resource/pens/'+ value, {
-                method: 'DELETE'
-            }).then((resp) => {
-                return resp.json(); // or resp.text() or whatever the server sends
-            }).then((body) => {
-                alert("Delete succeded")
-                 // TODO handle body
-            }).catch((error) => {
-                // TODO handle error
-                alert("Delete failed " + error )
-            });
-        }; 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+      // Go back to the home page for the pen collection
+      window.location.href='/pens'
+    }
+  script.
+    function deleteOnid() {
+      console.log("starting delete")
+      // delete first
+      fetch(actionid, {
+        method: 'DELETE'      // Don't need a body for the delete
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Delete succeded")
+        window.location.href='/pens'
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Delete failed " + error )
+      });
+    }
