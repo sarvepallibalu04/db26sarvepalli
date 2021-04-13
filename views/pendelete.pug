@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    h1= title
+
+    - let Penid = toShow._id
+    - let pentype = toShow.pentype 
+    - let pencolor = toShow.color
+    - let penprice = toShow.price
+    div
+        div.row
+            div(class='PenAttr mr-3') pen ID is:
+            div(id="Penid") #{Penid}
+        div.row
+            div(class='PenAttr mr-3') pen type is:
+            div #{pentype}
+        div.row
+            div(class='PenAttr mr-3') pen color is:
+            div #{pencolor}
+        div.row
+            div(class='PenAttr mr-3') pen price is:
+            div #{penprice}
+        div.row
+            button(class='btn btn-success'  type="submit" onclick=`deletepen()`) Delete
+
+    script.
+        function deletepen() {
+            var value=document.getElementById("Penid").innerHTML;
+            console.log(value)
+            // TODO do something here to show user that form is being submitted
+            fetch('/resource/pens/'+ value, {
+                method: 'DELETE'
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Delete succeded")
+                 // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Delete failed " + error )
+            });
+        }; 
