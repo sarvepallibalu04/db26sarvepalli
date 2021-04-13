@@ -11,5 +11,8 @@ router.get('/detail', pen_controlers.Pen_view_one_Page);
 /* GET create pen page */
 router.get('/create', pen_controlers.pen_create_Page);
 
+/* GET create update page */
+router.get('/update', pen_controlers.pen_update_Page);
+
 
 module.exports = router;
