@@ -2,27 +2,30 @@ extends layout
 
 block content
   h1= title
+   if (toShow == null)
+    h2 No instance to Update
+   else
 
-  - let penid = toShow._id
-  - let pentype = toShow.pentype
-  - let pencolor = toShow.color
-  - let penprice = toShow.price
+    - let penid = toShow._id
+    - let pentype = toShow.pentype
+    - let pencolor = toShow.color
+    - let penprice = toShow.price
   
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{penid}
-  - let actionid = "/resource/pens/" + penid
-  form(id='penForm', action= actionid, method="PUT")
-    div.form-group
-        label.PenAttr(for='pentype') pen type
-        input#pentype(type='text', name='pentype', value= pentype )
-    div.form-group
-        label.PenAttr(for='color') pen color
-        input#color(type='text', name='color', value= pencolor )
-    div.form-group
-        label.PenAttr(for='price') pen price
-        input#price(type='number', name='price', value= penprice )
-    input(type="submit")
+    div.row(class='mb-2')
+        div.mr-1 ID is
+        div #{penid}
+    - let actionid = "/resource/pens/" + penid
+    form(id='penForm', action= actionid, method="PUT")
+        div.form-group
+            label.PenAttr(for='pentype') pen type
+            input#pentype(type='text', name='pentype', value= pentype )
+        div.form-group
+            label.PenAttr(for='color') pen color
+            input#color(type='text', name='color', value= pencolor )
+        div.form-group
+            label.PenAttr(for='price') pen price
+            input#price(type='number', name='price', value= penprice )
+        input(type="submit")
 
   script.
     document.forms['penForm'].addEventListener('submit', (event) => {

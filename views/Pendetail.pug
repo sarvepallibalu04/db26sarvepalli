@@ -1,21 +1,24 @@
 extends layout
 
 block content
-  h1= title
-  - let Penid = toShow._id   
-  - let pentype = toShow.pentype
-  - let color = toShow.color
-  - let price = toShow.price
-  div
-    div.row
-      div(class='PenAttr mr-3') Pen ID is:
-      div #{Penid}
-    div.row
-      div(class='PenAttr mr-3') Pen PenType is:
-      div #{pentype}
-    div.row
-      div(class='PenAttr mr-3') Pen color is:
-      div #{color}
-    div.row
-      div(class='PenAttr mr-3') Pen price is:
-      div #{price}
+  h1(class="Title")= title
+  if (toShow == null)
+    h2 No instance to display
+  else
+    - let Penid = toShow._id   
+    - let pentype = toShow.pentype
+    - let color = toShow.color
+    - let price = toShow.price
+    div
+      div.row
+        div(class='PenAttr mr-3') Pen ID is:
+        div #{Penid}
+      div.row
+        div(class='PenAttr mr-3') Pen PenType is:
+        div #{pentype}
+      div.row
+        div(class='PenAttr mr-3') Pen color is:
+        div #{color}
+      div.row
+        div(class='PenAttr mr-3') Pen price is:
+        div #{price}
