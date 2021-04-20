@@ -4,6 +4,16 @@ block content
   h1= title
   p Welcome to the page #{title}
   p I like playing cricket 
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/pens") Take me to pens
+    br
+    a(href="/logout") Logout
+  br
   button(type="button", class="btn btn-secondary" onclick='update()') press me 
   br
   br
