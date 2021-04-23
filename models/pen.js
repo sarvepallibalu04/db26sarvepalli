@@ -1,6 +1,10 @@
 const mongoose = require("mongoose")
 const penSchema = mongoose.Schema({
-pentype: String,
+pentype:{
+    type: String,
+    minLength: 3,
+    maxLength:10
+},
 color: String,
 price: {
     type:Number,
