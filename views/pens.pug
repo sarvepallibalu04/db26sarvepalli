@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  -let destnations4 = `dispatch(\"/pens/create\")`
   button.btn( class="btn-primary m-1", onclick= destinations4) View
   
   h1= title
@@ -12,7 +13,6 @@ block content
             each pen, index in pens 
             
                 -let destination1 = `dispatch(\"/pens/update?id=${pen._id}\")`
-                //- -let destnations4 = `dispatch(\"/pens/create?id=${pen._id}\")`
                 -let destinations2 = `dispatch(\"/pens/detail?id=${pen._id}\")`
                 -let destinations3 = `dispatch(\"/pens/delete?id=${pen._id}\")`
                 div(class="col-sm-2" onclick=`buy(${index})`) #{pen.pentype} #{pen.color} #{pen.price}
