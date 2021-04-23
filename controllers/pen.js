@@ -26,7 +26,8 @@ exports.pen_create_post = async function(req, res) {
     res.send(result);
     }
     catch(err){
-    res.error(500,`{"error": ${err}}`);
+    // res.error(500,`{"error": ${err}}`);
+    res.status(500).send("Not a valid pen");
     }
     };
 // Handle Pen delete form on DELETE.
